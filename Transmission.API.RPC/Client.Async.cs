@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +11,6 @@ using Transmission.API.RPC.Entity;
 using Newtonsoft.Json.Linq;
 using Transmission.API.RPC.Common;
 using Transmission.API.RPC.Arguments;
-using System.Runtime;
 
 namespace Transmission.API.RPC
 {
@@ -499,9 +497,6 @@ namespace Transmission.API.RPC
 
             request.Tag = ++CurrentTag;
 
-            //Prepare http web request
-            HttpClient httpClient = new HttpClient();
-
             HttpRequestMessage httpRequest = new HttpRequestMessage(HttpMethod.Post, Url);
             httpRequest.Headers.Add("X-Transmission-Session-Id", SessionID);
 
@@ -511,7 +506,7 @@ namespace Transmission.API.RPC
             httpRequest.Content = new StringContent(request.ToJson(), Encoding.UTF8, "application/json-rpc");
 
             //Send request and prepare response
-            using (var httpResponse = await httpClient.SendAsync(httpRequest))
+            using (var httpResponse = await _httpClient.SendAsync(httpRequest))
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {

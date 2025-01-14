@@ -3,6 +3,7 @@ using System.Text;
 using Transmission.API.RPC.Entity;
 using Transmission.API.RPC.Arguments;
 using System.IO;
+using System.Net.Http;
 using System.Xml.Linq;
 
 namespace Transmission.API.RPC
@@ -12,6 +13,7 @@ namespace Transmission.API.RPC
     /// </summary>
     public partial class Client : ITransmissionClient, ITransmissionClientAsync
     {
+        private readonly HttpClient _httpClient;
         private readonly string _authorization;
         private readonly bool _needAuthorization;
 
@@ -54,10 +56,13 @@ namespace Transmission.API.RPC
         /// <param name="sessionID">Session ID</param>
         /// <param name="login">Login</param>
         /// <param name="password">Password</param>
-        public Client(string url, string sessionID = null, string login = null, string password = null)
+        /// <param name="httpClient">HttpClient</param>
+        public Client(string url, string sessionID = null, string login = null, string password = null, HttpClient httpClient = null)
         {
             this.Url = url;
             this.SessionID = sessionID;
+            
+            _httpClient = httpClient ?? new HttpClient();
 
             if (!String.IsNullOrWhiteSpace(login))
             {
