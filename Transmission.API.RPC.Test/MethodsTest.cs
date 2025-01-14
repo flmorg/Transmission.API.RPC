@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Collections;
 using System.Linq;
+using System.Net.Http;
 using Transmission.API.RPC.Entity;
 using Transmission.API.RPC.Arguments;
 
@@ -15,7 +16,7 @@ namespace Transmission.API.RPC.Test
         const string HOST = "http://192.168.1.50:9091/transmission/rpc";
         const string SESSION_ID = "";
 
-        Client client = new Client(HOST, SESSION_ID);
+        Client client = new Client(new HttpClient(), HOST, SESSION_ID);
 
         #region Torrent Test
 

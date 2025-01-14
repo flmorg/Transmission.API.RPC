@@ -57,12 +57,11 @@ namespace Transmission.API.RPC
         /// <param name="login">Login</param>
         /// <param name="password">Password</param>
         /// <param name="httpClient">HttpClient</param>
-        public Client(string url, string sessionID = null, string login = null, string password = null, HttpClient httpClient = null)
+        public Client(HttpClient httpClient, string url, string sessionID = null, string login = null, string password = null)
         {
             this.Url = url;
             this.SessionID = sessionID;
-            
-            _httpClient = httpClient ?? new HttpClient();
+            _httpClient = httpClient;
 
             if (!String.IsNullOrWhiteSpace(login))
             {
