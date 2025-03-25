@@ -91,7 +91,7 @@ namespace Transmission.API.RPC.Test
 
 			client.TorrentSet(settings);
 
-			torrentsInfo = client.TorrentGet(TorrentFields.ALL_FIELDS, torrentInfo.Id);
+			torrentsInfo = client.TorrentGet(TorrentFields.ALL_FIELDS, torrentInfo.HashString);
 			torrentInfo = torrentsInfo.Torrents.FirstOrDefault();
 
 			Assert.IsFalse(trackerCount == torrentInfo.Trackers.Length);

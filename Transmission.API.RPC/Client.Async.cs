@@ -152,7 +152,7 @@ namespace Transmission.API.RPC
         /// <param name="fields">Fields of torrents</param>
         /// <param name="ids">IDs of torrents (null or empty for get all torrents)</param>
         /// <returns>Torrents info</returns>
-        public async Task<TransmissionTorrents?> TorrentGetAsync(string[] fields, params long[] ids)
+        public async Task<TransmissionTorrents?> TorrentGetAsync(string[] fields, params string[] ids)
         {
             var arguments = new Dictionary<string, object>();
             arguments.Add("fields", fields);

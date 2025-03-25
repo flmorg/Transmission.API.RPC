@@ -168,7 +168,7 @@ namespace Transmission.API.RPC
         /// <param name="fields">Fields of torrents</param>
         /// <param name="ids">IDs of torrents (null or empty for get all torrents)</param>
         /// <returns>Torrents info</returns>
-        public TransmissionTorrents TorrentGet(string[] fields, params long[] ids)
+        public TransmissionTorrents TorrentGet(string[] fields, params string[] ids)
         {
             var task = TorrentGetAsync(fields, ids);
             task.WaitAndUnwrapException();

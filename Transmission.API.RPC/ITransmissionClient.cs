@@ -93,7 +93,7 @@ namespace Transmission.API.RPC
         /// <param name="fields">Fields of torrents</param>
         /// <param name="ids">IDs of torrents (null or empty for get all torrents)</param>
         /// <returns>Torrents info</returns>
-        TransmissionTorrents? TorrentGet(string[] fields, params long[] ids);
+        TransmissionTorrents? TorrentGet(string[] fields, params string[] ids);
 
         /// <summary>
         /// Move torrents to bottom in queue  (API: queue-move-bottom)
